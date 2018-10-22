@@ -188,8 +188,10 @@ public function getFlag()
    }
    
    $addgroup['objectClass'][0] = "groupOfNames";
-   $addgroup['objectClass'][1] = "AMUGroup";
+   $addgroup['objectClass'][1] = "supannGroupe";
    $addgroup['objectClass'][2] = "top";
+
+   $addgroup['member'] = [''];
 
    $infogroupe['dn'] = "cn=".$this->cn.", " . $config_groups['group_branch'] . ", " . $ldap->getBaseDN();
 
