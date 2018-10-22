@@ -896,7 +896,7 @@ class GroupController extends Controller {
             $adm = $request->getSession()->get('phpCAS_user');
                 
             // Création du groupe dans le LDAP
-            $infogroup = $group->infosGroupeLdap();
+            $infogroup = $group->infosGroupeLdap($this->get('amu.ldap'), $this->config_groups);
             // On récupère le service ldapfonctions
             $ldapfonctions = $this->container->get('groupie.ldapfonctions');
             $ldapfonctions->SetLdap($this->get('amu.ldap'), $this->config_users, $this->config_groups, $this->config_private);
@@ -1226,7 +1226,7 @@ class GroupController extends Controller {
             }
                 
             // Modification du groupe dans le LDAP
-            $infogroup = $groupmod->infosGroupeLdap();
+            $infogroup = $groupmod->infosGroupeLdap($this->get('amu.ldap'), $this->config_groups);
             //echo "<b> DEBUT DEBUG INFOS <br>" . "<br><B>Infos groupe</B>=><FONT color =green><PRE>" . print_r($infogroup, true) . "</PRE></FONT></FONT>";
             $b = $this->getLdap()->modifyGroupeLdap($dn, $infogroup['infos']);
             // echo "<b> DEBUT DEBUG INFOS <br>" . "<br><B>filt</B>=><FONT color =green><PRE>" . print_r($groupmod) . "</PRE></FONT></FONT>";

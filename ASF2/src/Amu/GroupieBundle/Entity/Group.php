@@ -176,7 +176,7 @@ public function getFlag()
 
  */
 
- public function infosGroupeLdap() 
+ public function infosGroupeLdap($ldap, $config_groups) 
  {
    $infogroupe = array();
    $addgroup = array();
@@ -184,14 +184,14 @@ public function getFlag()
    $addgroup['cn'] = $this->cn;
    $addgroup['description'] = $this->description;
    if ($this->amugroupfilter != "") {
-        $addgroup['amuGroupFilter'] = $this->amugroupfilter;
+        $addgroup[$config_groups['groupfilter']] = $this->amugroupfilter;
    }
    
    $addgroup['objectClass'][0] = "groupOfNames";
    $addgroup['objectClass'][1] = "AMUGroup";
    $addgroup['objectClass'][2] = "top";
-   
-   $infogroupe['dn'] = "cn=".$this->cn.", ou=groups, dc=univ-amu, dc=fr";
+
+   $infogroupe['dn'] = "cn=".$this->cn.", " . $config_groups['group_branch'] . ", " . $ldap->getBaseDN();
 
    $infogroupe['infos'] = $addgroup;  
 
