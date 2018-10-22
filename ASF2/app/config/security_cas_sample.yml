@@ -31,7 +31,7 @@ security:
 
             cas:
                 cas_allow_anonymous: false
-                cas_server: cas.univ.fr
+                cas_server: cas-test.univ-paris1.fr
                 cas_port: 443
                 cas_path: /cas/
                 ca_cert_path: ~

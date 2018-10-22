@@ -9,12 +9,12 @@
 amu_role:
 
     roles:
-        - { name: "ROLE_MEMBRE",         type: "ldap",    link: "isMember",  values: "grp:personnel" }
+        - { name: "ROLE_MEMBRE",         type: "ldap",    link: "isMember",  values: "employees.affiliation.staff" }
         - { name: "ROLE_GESTIONNAIRE",   type: "ldap",    link: "isMember",  values: "grp:gest" }
         - { name: "ROLE_DOSI",           type: "ldap",    link: "isMember",  values: "grp:dosi" }
-        - { name: "ROLE_PRIVE",          type: "ldap",    link: "isMember",  values: "grp:personnel" }
-        - { name: "ROLE_ADMIN",          type: "ldap",    link: "isMember",  values: "grp:adm" }
-        - { name: "ROLE_SUPER_ADMIN",    type: "session",  link: "_isDevelopper",  values: "1" }
+        - { name: "ROLE_PRIVE",          type: "ldap",    link: "isMember",  values: "employees.affiliation.staff " }
+        - { name: "ROLE_ADMIN",          type: "ldap",    link: "isMember",  values: "applications.grouper.admins" }
+        - { name: "ROLE_SUPER_ADMIN",    type: "ldap",    link: "isMember",  values: "applications.grouper.admins" }
         
     attributes:
         into_session: false

@@ -92,13 +92,13 @@ amu_ldap:
         default:
             servers:
                 primary:
-                    host: ldap.univ.fr
+                    host: ldap.univ-paris1.fr
                     port: 389
             relative_dn: cn=admgroup,ou=system,dc=univ-amu,dc=fr
             password: pwdadmgroup
             network_timeout: 3
             protocol_version: 3
-            base_dn: dc=univ-amu,dc=fr
+            base_dn: dc=univ-paris1,dc=fr
 
 amu_groupie:
     logs:
@@ -116,7 +116,7 @@ amu_groupie:
         primaff: supannentiteaffectationprincipale
         campus: amucampus
         site: amusite
-        filter: (&(!(edupersonprimaryaffiliation=student))(!(edupersonprimaryaffiliation=alum))(!(edupersonprimaryaffiliation=oldemployee))(amudatevalidation=*))
+        filter: (edupersonaffiliation=*)
     groups:
         object_class: groupOfNames
         group_branch: ou=groups
@@ -125,7 +125,7 @@ amu_groupie:
         member: member
         memberof: memberof
         groupfilter: amugroupfilter
-        groupadmin: amugroupadmin
+        groupadmin: supannGroupeAdminDN
     private:
         private_branch: ou=private
         prefix: amu:perso
