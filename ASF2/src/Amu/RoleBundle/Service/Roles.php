@@ -331,6 +331,7 @@ class Roles
                     switch (strtolower($oneRule['type'])) {
 
                         case 'ldap': // Intérrogation ldap simple:
+                            $config_groups = $this->container->getParameter('amu.groupie.groups');
                             $ldap=$this->getLdap();
                             $baseDN = $ldap->getBaseDN();
                             $resource = $ldap->connect();
@@ -339,8 +340,7 @@ class Roles
 
                                 if ($oneRule['link'] == "isMember") {
                                     $groupName = $oneRule['values'];
-                                    $isMemberFilter = "(&(objectclass=*)(memberof=CN=$groupName,OU=groups,DC=univ-amu,DC=fr)(uid=$user))";
-                                    $baseDN = "dc=univ-amu,dc=fr";
+                                    $isMemberFilter = "(&(objectclass=*)(" . $config_groups['memberof'] . "=" . $config_groups['cn'] . "=$groupName," . $config_groups['group_branch'] . "," . $baseDN . ")(uid=$user))";
                                     $results = $resource->search($baseDN, $isMemberFilter, array("uid"),false);
                                     if ($results["count"] == 1) {
                                         $arRoles[] = $oneRule['name'];
