@@ -64,7 +64,7 @@ class Client
         $servers = [];
         
         foreach ($this->profil['servers'] as $server) {
-            $servers[] = implode(':', $server);
+            $servers[] = 'ldap://' . implode(':', $server);
         }
         
         $connect = implode(',', $servers);
