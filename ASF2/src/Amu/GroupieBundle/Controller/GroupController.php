@@ -211,7 +211,7 @@ class GroupController extends Controller {
         for ($i=0; $i<$arData["count"]; $i++) {
             $groups[$i] = new Group();
             $groups[$i]->setCn($arData[$i][$this->config_groups['cn']][0]);
-            $groups[$i]->setDescription($arData[$i][$this->config_groups['desc']][0]);
+            $groups[$i]->setDescription(isset($arData[$i][$this->config_groups['desc']]) ? $arData[$i][$this->config_groups['desc']][0] : '');
             if (isset($arData[$i][$this->config_groups['groupfilter']])) {
                 $groups[$i]->setAmugroupfilter($arData[$i][$this->config_groups['groupfilter']][0]);
             }
@@ -275,7 +275,7 @@ class GroupController extends Controller {
             if (!strstr($result[$i]["dn"], $this->config_private['private_branch'])) {
                 $groups[$i] = new Group();
                 $groups[$i]->setCn($result[$i][$this->config_groups['cn']][0]);
-                $groups[$i]->setDescription($result[$i][$this->config_groups['desc']][0]);
+                $groups[$i]->setDescription(isset($result[$i][$this->config_groups['desc']]) ? $result[$i][$this->config_groups['desc']][0] : '');
                 if (isset($result[$i][$this->config_groups['groupfilter']]))
                     $groups[$i]->setAmugroupfilter($result[$i][$this->config_groups['groupfilter']][0]);
 
