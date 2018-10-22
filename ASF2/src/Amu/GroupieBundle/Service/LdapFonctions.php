@@ -94,6 +94,7 @@ class LdapFonctions
     public function getMembersGroup($groupName) {
         $filtre = $this->config_groups['memberof']."=".$this->config_groups['cn']."=" . $groupName . ", ".$this->config_groups['group_branch'].", ".$this->ldap->getBaseDN();
         $restriction = array($this->config_users['uid'], $this->config_users['displayname'], $this->config_users['mail'], $this->config_users['tel'], $this->config_users['name']);
+        $filtre = "(&($filtre)(objectClass=eduPerson))";
         $result = $this->recherche($filtre, $restriction, "no");
         return $result;
     }
