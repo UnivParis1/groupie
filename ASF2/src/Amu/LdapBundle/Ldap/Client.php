@@ -74,7 +74,7 @@ class Client
 
 
         if (!$this->link) {
-            throw new \Exception('['.ldap_errno($this->link).'] '.ldap_error($this->link));
+            throw new \Exception("connection to $connect failed");
         }
 
         $this->bind($relativeDN = $this->profil['relative_dn'], $this->profil['password']);
@@ -195,7 +195,7 @@ class Client
         if ($res) {
             return true;
         } else {
-            throw new Exception('['.ldap_errno($this->link).'] '.ldap_error($this->link));
+            throw new \Exception("adding $dn with " . json_encode($info) . ': ['.ldap_errno($this->link).'] '.ldap_error($this->link));
         }
         return false;
     }
@@ -216,7 +216,7 @@ class Client
         if ($res) {
             return true;
         } else {
-            throw new Exception('['.ldap_errno($this->link).'] '.ldap_error($this->link));
+            throw new \Exception('['.ldap_errno($this->link).'] '.ldap_error($this->link));
         }
         return false;
     }
